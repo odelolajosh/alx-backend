@@ -28,7 +28,7 @@ class LFUCache(BaseCaching):
         return self.cache_data.get(key, None)
 
     def __update_lfu(self, key):
-        """ Updates the MRU list """
+        """ Updates the LFU list """
         if key in self._lfu:
             self._lfu[key] += 1
         else:
