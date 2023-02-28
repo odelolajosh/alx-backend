@@ -2,7 +2,7 @@
 """ 2. get timezone from request """
 import pytz
 from flask import Flask, render_template, request, g
-from flask_babel import Babel
+from flask_babel import Babel, format_datetime
 
 
 class Config:
@@ -37,6 +37,7 @@ def before_request() -> None:
     user = get_user(request.args.get('login_as'))
     if user:
         g.user = user
+    g.time = format_datetime()
 
 
 @babel.localeselector
@@ -68,7 +69,7 @@ def get_timezone() -> str:
 @app.route("/")
 def welcome() -> str:
     """ / page """
-    return render_template('7-index.html')
+    return render_template('index.html')
 
 
 if __name__ == '__main__':
